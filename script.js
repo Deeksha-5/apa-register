@@ -1,5 +1,5 @@
 // Razorpay Test Key - Replace with your actual test key
-const RAZORPAY_KEY_ID = process.env.RAZORPAY_KEY_ID
+const RAZORPAY_KEY_ID = 'rzp_test_R5VNE5JlgrZGle'
 
 // API endpoint - change based on deployment
 const API_ENDPOINT = window.location.hostname === 'localhost' 
@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const payButton = document.getElementById('payButton');
     const paymentStatus = document.getElementById('paymentStatus');
     
-    // Form validation
-    form.addEventListener('submit', function(e) {
+    // Payment button click handler
+    payButton.addEventListener('click', function(e) {
         e.preventDefault();
         
         // Clear previous errors
