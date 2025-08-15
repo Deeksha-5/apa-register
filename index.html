@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOCK CBSE EXAM 2025 - Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header-section">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="logo.png" alt="Academy Logo" class="company-logo">
+                    <div class="company-info">
+                        <h1 class="company-name">AAKANSH PHYSICS ACADEMY</h1>
+                        <h3 class="tagline">Transforming Potential into Achievement</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="event-banner">
+        <div class="container">
+            <div class="banner-content">
+                <div class="event-info">
+                    <h1 class="event-title">CLASS 12 PHYSICS MOCK TEST</h1>
+                    <h3 class="event-date">28th September 2025 | Offline & Online Modes | CBSE Pattern</h3>
+                    <p class="event-description">Master your Physics preparation with our comprehensive Class 12 Physics Mock Test! <br>Designed by expert faculty following the latest CBSE pattern.</p>
+                </div>
+                <div class="banner-highlight">
+                    <div class="price-badge">
+                        <span class="price-label">Early Bird</span>
+                        <span class="price-amount">₹199</span>
+                        <span class="price-original">₹299</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Sections -->
+    <div class="info-sections">
+        <div class="container">
+            <!-- Exam Details Section -->
+            <div class="exam-details-section">
+                <h3 class="section-title">📋 Exam Details</h3>
+                <div class="event-highlights">
+                    <div class="highlight-item exam-detail">
+                        <span class="highlight-number">3</span>
+                        <span class="highlight-text">Hours Duration</span>
+                    </div>
+                    <div class="highlight-item exam-detail">
+                        <span class="highlight-number">70</span>
+                        <span class="highlight-text">Marks Total</span>
+                    </div>
+                    <div class="highlight-item exam-detail">
+                        <span class="highlight-number">35</span>
+                        <span class="highlight-text">Questions</span>
+                    </div>
+                    <div class="highlight-item exam-detail">
+                        <span class="highlight-number">CBSE</span>
+                        <span class="highlight-text">Exact Pattern</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="registration-form">
+            <h2 class="form-title">Register for Physics Mock Test</h2>
+            <p class="form-subtitle">Class 12 Students Only | Limited Seats Available</p>
+            <form id="registrationForm">
+                <div class="form-section">
+                    <h2>Student Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Student Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="student@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Mobile Number *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="parentPhone">Alternate Mobile Number *</label>
+                        <input type="tel" id="parentPhone" name="parentPhone" placeholder="Alternate contact number" pattern="[0-9]{10}" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>Academic Details</h2>
+                    
+                    <div class="form-group">
+                        <label for="stream">Stream *</label>
+                        <select id="stream" name="stream" required>
+                            <option value="">Select Stream</option>
+                            <option value="science-pcm">Science (PCM)</option>
+                            <option value="science-pcb">Science (PCB)</option>
+                            <option value="science-pcmb">Science (PCMB)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="school">School Name *</label>
+                        <input type="text" id="school" name="school" placeholder="Enter your school name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apaStudent">Are you a student of Aakansh Physics Academy? *</label>
+                        <select id="apaStudent" name="apaStudent" required>
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input type="text" id="city" name="city" placeholder="Enter your city" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="examMode">Exam Mode Selected *</label>
+                        <select id="examMode" name="examMode" required>
+                            <option value="">Select exam mode</option>
+                            <option value="offline">Offline (At Center)</option>
+                            <option value="online">Online (From Home)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rollNumber">How you get to know about us? *</label>
+                        <select id="rollNumber" name="rollNumber" required>
+                            <option value="">Select an option (Optional)</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="youtube">YouTube</option>
+                            <option value="website">Website/Google Search</option>
+                            <option value="word-of-mouth">Word of Mouth/Friends</option>
+                            <option value="newspaper">Newspaper Ads</option>
+                            <option value="whatsapp">WhatsApp</option>
+                            <option value="school">School/Teachers</option>
+                            <option value="coaching">Coaching Center</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="payment-section">
+                    <h2>Payment Summary</h2>
+                    <div class="offer-banner">
+                        <span class="offer-icon">🎉</span>
+                        <span class="offer-text">Early Bird Offer Active!</span>
+                    </div>
+                    <div class="payment-details">
+                        <div class="payment-row">
+                            <span>Physics Mock Test Fee:</span>
+                            <span id="baseAmount">₹299</span>
+                        </div>
+                        <div class="payment-row discount">
+                            <span>Early Bird Discount:</span>
+                            <span id="discount">-₹100</span>
+                        </div>
+                        <div class="payment-row total">
+                            <span>Total Amount:</span>
+                            <span id="totalAmount">₹199</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="payButton" class="btn-primary">Proceed to Payment</button>
+                </div>
+            </form>
+
+            <div id="paymentStatus" class="payment-status"></div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Aakansh Physics Academy</h3>
+                    <p class="footer-tagline">Transforming Potential into Achievement</p>
+                    <div class="footer-address">
+                        <p>📍 305, Metroview,</p>
+                        <p>Dwarka, Sector-13B,</p>
+                        <p>New Delhi - 110078</p>
+                        <p>📞 +91 93548 31500</p>
+                        <p>✉️ aakanshphysicsacademy@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/aakanshacademy/" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <span class="social-icon">📘</span> Facebook
+                        </a>
+                        <a href="https://www.instagram.com/aakanshphysicsacademy/" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <span class="social-icon">📷</span> Instagram
+                        </a>
+                        <a href="https://www.youtube.com/@AakanshPhysicsAcademy" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <span class="social-icon">📺</span> YouTube
+                        </a>
+                        <a href="https://t.me/AakanshPhysicsAcademy" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <span class="social-icon">📱</span> Telegram
+                        </a>
+                        <a href="https://aakanshphysicsacademy.com/" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <span class="social-icon">🌐</span> Website
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- <div class="footer-section">
+                    <h4 class="footer-subtitle">Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="https://aakanshphysicsacademy.com/" class="footer-link">🌐 www.aakanshphysicsacademy.com</a>
+                    </div>
+                </div> -->
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Aakansh Physics Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

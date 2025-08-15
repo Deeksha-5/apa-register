@@ -1,0 +1,33 @@
+# Dependencies
+node_modules
+
+# Environment files
+.env.local
+.env.development.local
+.env.test.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local development files
+.env.example
+
+# IDE files
+.vscode
+.idea
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Development dependencies
+nodemon.json
+
+# Local Excel files (since we're using Azure Storage)
+*.xlsx
+*.xls
+
+# Temporary files
+*.tmp
+*.temp
