@@ -3,7 +3,17 @@
   "builds": [
     {
       "src": "server.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "index.html",
+          "styles.css",
+          "script.js",
+          "logo.png",
+          "favicon.ico",
+          "emailTemplate.js"
+        ]
+      }
     }
   ],
   "routes": [
@@ -14,10 +24,5 @@
   ],
   "env": {
     "NODE_ENV": "production"
-  },
-  "functions": {
-    "server.js": {
-      "includeFiles": "**"
-    }
   }
 }
