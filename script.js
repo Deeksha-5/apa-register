@@ -1,13 +1,28 @@
-// Razorpay Test Key - Replace with your actual test key
-const RAZORPAY_KEY_ID = 'rzp_test_R5VNE5JlgrZGle'
+// Razorpay Key - will be fetched from server
+let RAZORPAY_KEY_ID = null;
 
-// API endpoint - change based on deployment
-const API_ENDPOINT = window.location.hostname === 'localhost' 
-    ? 'http://localhost:3000/api/register' 
-    : '/api/register';
+// API endpoints
+const API_BASE = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000' 
+    : '';
+const API_ENDPOINT = `${API_BASE}/api/register`;
+const CONFIG_ENDPOINT = `${API_BASE}/api/config`;
+
+// Fetch Razorpay configuration
+async function fetchConfig() {
+    try {
+        const response = await fetch(CONFIG_ENDPOINT);
+        const config = await response.json();
+        RAZORPAY_KEY_ID = config.razorpayKeyId;
+    } catch (error) {
+        console.error('Failed to fetch configuration:', error);
+    }
+}
 
 // Initialize form
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    // Fetch configuration first
+    await fetchConfig();
     const form = document.getElementById('registrationForm');
     const payButton = document.getElementById('payButton');
     const paymentStatus = document.getElementById('paymentStatus');
@@ -120,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currency: 'INR',
             name: 'Aakansh Physics Academy',
             description: 'Class 12 Physics Mock Test Registration',
-            image: 'logo.png', // Optional: Add your logo
+            image: window.location.origin + '/logo.png', // Logo with full URL
             prefill: {
                 name: formData.fullName,
                 email: formData.email,

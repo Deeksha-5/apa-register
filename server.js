@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('.'));
+app.use(express.static(path.join(__dirname)));
 
 // Azure Storage Configuration
 const AZURE_STORAGE_CONNECTION_STRING = process.env.AZURE_STORAGE_CONNECTION_STRING;
@@ -192,6 +192,13 @@ async function sendConfirmationEmail(registrationData) {
         return false;
     }
 }
+
+// API endpoint to get Razorpay configuration
+app.get('/api/config', (req, res) => {
+    res.json({
+        razorpayKeyId: process.env.RAZORPAY_KEY_ID || 'rzp_test_R5VNE5JlgrZGle'
+    });
+});
 
 // API endpoint to save registration
 app.post('/api/register', async (req, res) => {
