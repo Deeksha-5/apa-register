@@ -5,6 +5,7 @@ const ExcelJS = require('exceljs');
 const nodemailer = require('nodemailer');
 const path = require('path');
 const { getEmailTemplate } = require('./emailTemplate');
+const Razorpay = require('razorpay');
 require('dotenv').config();
 
 const app = express();
@@ -193,11 +194,45 @@ async function sendConfirmationEmail(registrationData) {
     }
 }
 
+// Initialize Razorpay
+const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID || 'rzp_test_R5VNE5JlgrZGle',
+    key_secret: process.env.RAZORPAY_KEY_SECRET
+});
+
 // API endpoint to get Razorpay configuration
 app.get('/api/config', (req, res) => {
     res.json({
         razorpayKeyId: process.env.RAZORPAY_KEY_ID || 'rzp_test_R5VNE5JlgrZGle'
     });
+});
+
+// API endpoint to create Razorpay order
+app.post('/api/create-order', async (req, res) => {
+    try {
+        const options = {
+            amount: 19900, // Amount in paise (₹199.00)
+            currency: 'INR',
+            receipt: `receipt_${Date.now()}`,
+            payment_capture: 1 // Auto-capture payment
+        };
+
+        const order = await razorpay.orders.create(options);
+        
+        res.json({
+            success: true,
+            orderId: order.id,
+            amount: order.amount,
+            currency: order.currency
+        });
+    } catch (error) {
+        console.error('Error creating order:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to create order',
+            error: error.message
+        });
+    }
 });
 
 // API endpoint to save registration

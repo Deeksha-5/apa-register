@@ -7,6 +7,7 @@ const API_BASE = window.location.hostname === 'localhost'
     : '';
 const API_ENDPOINT = `${API_BASE}/api/register`;
 const CONFIG_ENDPOINT = `${API_BASE}/api/config`;
+const ORDER_ENDPOINT = `${API_BASE}/api/create-order`;
 
 // Fetch Razorpay configuration
 async function fetchConfig() {
@@ -121,18 +122,54 @@ document.addEventListener('DOMContentLoaded', async function() {
         return data;
     }
     
-    function initiatePayment() {
+    async function initiatePayment() {
         const formData = getFormData();
         
         // Disable button
         payButton.disabled = true;
-        payButton.innerHTML = '<span class="loading"></span> Processing...';
+        payButton.innerHTML = '<span class="loading"></span> Creating order...';
         
-        // Razorpay options
+        let orderData;
+        
+        try {
+            // Create order first
+            const orderResponse = await fetch(ORDER_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            orderData = await orderResponse.json();
+            
+            if (!orderData.success) {
+                throw new Error(orderData.message || 'Failed to create order');
+            }
+            
+            payButton.innerHTML = '<span class="loading"></span> Processing payment...';
+            
+        } catch (error) {
+            console.error('Error creating order:', error);
+            payButton.disabled = false;
+            payButton.innerHTML = 'Proceed to Payment';
+            showStatus('Failed to create order. Please try again.', 'error');
+            return;
+        }
+        
+        // Check if Razorpay is loaded
+        if (typeof Razorpay === 'undefined') {
+            payButton.disabled = false;
+            payButton.innerHTML = 'Proceed to Payment';
+            showStatus('Payment gateway not loaded. Please refresh the page and try again.', 'error');
+            return;
+        }
+        
+        // Razorpay options with order ID
         const options = {
             key: RAZORPAY_KEY_ID,
-            amount: 19900, // Amount in paise (₹199.00)
-            currency: 'INR',
+            order_id: orderData.orderId, // Use order ID from server
+            amount: orderData.amount,
+            currency: orderData.currency,
             name: 'Aakansh Physics Academy',
             description: 'Class 12 Physics Mock Test Registration',
             image: window.location.origin + '/logo.png', // Logo with full URL
@@ -150,7 +187,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 color: '#1e3a8a'
             },
             handler: function(response) {
-                // Payment successful
+                // Payment successful - response will include order_id, payment_id, and signature
                 handlePaymentSuccess(response, formData);
             },
             modal: {
@@ -163,14 +200,6 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         };
         
-        // Check if Razorpay is loaded
-        if (typeof Razorpay === 'undefined') {
-            payButton.disabled = false;
-            payButton.innerHTML = 'Proceed to Payment';
-            showStatus('Payment gateway not loaded. Please refresh the page and try again.', 'error');
-            return;
-        }
-        
         // Open Razorpay checkout
         const razorpay = new Razorpay(options);
         razorpay.on('payment.failed', function(response) {
@@ -182,6 +211,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     function handlePaymentSuccess(response, formData) {
         // Add payment details to form data
         formData.paymentId = response.razorpay_payment_id;
+        formData.orderId = response.razorpay_order_id;
+        formData.signature = response.razorpay_signature;
         formData.amount = 199;
         formData.paymentStatus = 'success';
         
